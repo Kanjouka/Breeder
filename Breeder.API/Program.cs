@@ -1,3 +1,6 @@
+using Breeder.Dal.Dal.InMemoryDal;
+using Breeder.Dal.Interfaces;
+
 namespace Breeder.API
 {
     public class Program
@@ -9,6 +12,12 @@ namespace Breeder.API
             // Add services to the container.
 
             builder.Services.AddControllers();
+
+            #region InMemoryDaoServices
+            builder.Services.AddSingleton<IEntityDao>((_) => new EntityInMemoryDao());
+            #endregion
+
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
